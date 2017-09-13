@@ -1,25 +1,41 @@
 ## Method 1.
+Set routes in app.js directly
+```
+app.use('/', (req, res)=>{
+
+});
+```
+
+## Method 2, Using express.Router 
+/routes/app.js
+```
+var express = require('express');
+var router = express.Router();
+
+router.get('/', function (req, res, next) {
+    res.render('index');
+});
+
+module.exports = router;
+```
+
 app.js
 ```
-
+var appRoutes = require('./routes/app');
+app.use('/', appRoutes);
 ```
 
-
-## Method 2.
-/routes/apiRoutes
+## Method 3
+Add route to app in routes file
 ```
-const aipRouter = express.Router();
-
-apiRouter.route('/widgets')
-    .get(function (req, res) {
+module.exports = app => {
+  app.get("/auth/google", passport.authenticate("google", {
+      scope: ["profile", "email"]
     })
-    .post(function (req, res) {
-    });
-
+  );
 ```
 
-app.js
+Call routes in app.js
 ```
-const apiRouter = require('./routes/api');
-app.use('/api', apiRoutes;
+require("./routes/authRoutes")(app);
 ```
