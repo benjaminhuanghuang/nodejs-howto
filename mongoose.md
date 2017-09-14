@@ -54,6 +54,9 @@ const entitySchema = new Schema({
 ```
 
 ## Validator
+```
+// adds pre-save validation for unique fields within a Mongoose schema.
+// you will get a Mongoose validation error when you attempt to violate a unique constraint
 var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var userSchema = new Schema({
@@ -65,7 +68,7 @@ var userSchema = new Schema({
 });
 
 userSchema.plugin(mongooseUniqueValidator);
-
+```
 
 ## Reference
 ```
